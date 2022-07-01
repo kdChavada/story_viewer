@@ -1,18 +1,16 @@
 import 'package:text_style_editor/text_style_editor.dart';
 import 'package:flutter/material.dart';
 
-
 class TextEditStory extends StatefulWidget {
+  String text;
 
-  String  text;
-   TextEditStory({Key? key,required  this.text}) : super(key: key);
+  TextEditStory({Key? key, required this.text}) : super(key: key);
 
   @override
   State<TextEditStory> createState() => _TextEditStoryState();
 }
 
 class _TextEditStoryState extends State<TextEditStory> {
-
   List<String> fonts = [
     'Billabong',
     'AlexBrush',
@@ -57,7 +55,6 @@ class _TextEditStoryState extends State<TextEditStory> {
   late TextAlign textAlign;
   bool edit = true;
 
-
   @override
   void initState() {
     textStyle = const TextStyle(
@@ -73,7 +70,7 @@ class _TextEditStoryState extends State<TextEditStory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Container(
+      body: SizedBox(
         child: Column(
           children: <Widget>[
             Expanded(
@@ -83,15 +80,13 @@ class _TextEditStoryState extends State<TextEditStory> {
                   widget.text,
                   style: textStyle,
                   textAlign: textAlign,
-
-
                 ),
               ),
             ),
             SafeArea(
               bottom: false,
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   border: Border.symmetric(
                     horizontal: BorderSide(
@@ -127,8 +122,6 @@ class _TextEditStoryState extends State<TextEditStory> {
           ],
         ),
       ),
-
     );
   }
 }
-

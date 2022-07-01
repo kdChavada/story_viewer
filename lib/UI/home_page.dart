@@ -6,6 +6,7 @@ import 'package:whatsapp_lite/UI/status.dart';
 
 import '../helper/constant.dart';
 import 'calls_page.dart';
+import 'camera_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -93,61 +94,52 @@ class _HomePageState extends State<HomePage> {
                                 ValueListenableBuilder(
                                     valueListenable: index,
                                     builder: (context, v, c) {
-                                      return index.value == 1
-                                          ? PopupMenuButton(
-                                              itemBuilder:
-                                                  (BuildContext context) =>
-                                                      <PopupMenuEntry>[
-                                                const PopupMenuItem(
-                                                  child: Text('New group'),
-                                                ),
-                                                const PopupMenuItem(
-                                                  child: Text('New broadcast'),
-                                                ),
-                                                const PopupMenuItem(
-                                                  child: Text('Linked Devices'),
-                                                ),
-                                                const PopupMenuItem(
-                                                  child:
-                                                      Text('Starred Message'),
-                                                ),
-                                                const PopupMenuItem(
-                                                  child: Text('Payment'),
-                                                ),
-                                                PopupMenuItem(
-                                                  child: GestureDetector(
-                                                      onTap: () {
-                                                        Navigator.pop(context);
-                                                        Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) {
-                                                              return const Setting();
-                                                            },
-                                                          ),
-                                                        );
-                                                      },
-                                                      child: const Text(
-                                                          'Setting')),
-                                                ),
-                                              ],
-                                            )
-                                          : index.value == 2
+                                      return index.value == 0
+                                          ? Container()
+                                          : index.value == 1
                                               ? PopupMenuButton(
                                                   itemBuilder:
                                                       (BuildContext context) =>
                                                           <PopupMenuEntry>[
-                                                    PopupMenuItem(
-                                                      onTap: () {},
-                                                      child: const Text(
-                                                          'Status Privacy'),
+                                                    const PopupMenuItem(
+                                                      child: Text('New group'),
                                                     ),
                                                     const PopupMenuItem(
-                                                      child: Text('Settings'),
+                                                      child:
+                                                          Text('New broadcast'),
+                                                    ),
+                                                    const PopupMenuItem(
+                                                      child: Text(
+                                                          'Linked Devices'),
+                                                    ),
+                                                    const PopupMenuItem(
+                                                      child: Text(
+                                                          'Starred Message'),
+                                                    ),
+                                                    const PopupMenuItem(
+                                                      child: Text('Payment'),
+                                                    ),
+                                                    PopupMenuItem(
+                                                      child: GestureDetector(
+                                                          onTap: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder:
+                                                                    (context) {
+                                                                  return const Setting();
+                                                                },
+                                                              ),
+                                                            );
+                                                          },
+                                                          child: const Text(
+                                                              'Setting')),
                                                     ),
                                                   ],
                                                 )
-                                              : index.value == 3
+                                              : index.value == 2
                                                   ? PopupMenuButton(
                                                       itemBuilder: (BuildContext
                                                               context) =>
@@ -155,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                                                         PopupMenuItem(
                                                           onTap: () {},
                                                           child: const Text(
-                                                              'Clear call log'),
+                                                              'Status Privacy'),
                                                         ),
                                                         const PopupMenuItem(
                                                           child:
@@ -163,7 +155,23 @@ class _HomePageState extends State<HomePage> {
                                                         ),
                                                       ],
                                                     )
-                                                  : const SizedBox();
+                                                  : index.value == 3
+                                                      ? PopupMenuButton(
+                                                          itemBuilder: (BuildContext
+                                                                  context) =>
+                                                              <PopupMenuEntry>[
+                                                            PopupMenuItem(
+                                                              onTap: () {},
+                                                              child: const Text(
+                                                                  'Clear call log'),
+                                                            ),
+                                                            const PopupMenuItem(
+                                                              child: Text(
+                                                                  'Settings'),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      : const SizedBox();
                                     })
                               ],
                             ),
@@ -187,9 +195,9 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                body: const TabBarView(
+                body: TabBarView(
                   children: [
-                    Camera(),
+                    CameraScreen(),
                     ChatList(),
                     Status(),
                     CallsPage(),
